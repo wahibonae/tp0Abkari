@@ -130,7 +130,23 @@ public class Bb implements Serializable {
             // Invalide le bouton pour changer le rôle système
             this.roleSystemeChangeable = false;
         }
-        this.reponse += question.toLowerCase(Locale.FRENCH) + "||";
+        // this.reponse += question.toLowerCase(Locale.FRENCH) + "||";
+
+        // TRAITEMENT ABKARI Mohamed Wahib (BONUS)
+        // Affichage longueur de chaque mot
+        String[] mots = question.split(" ");
+
+        StringBuilder resultat = new StringBuilder(question+"\nLongeurs: ");
+
+        for (String mot: mots) {
+            // On enlève tous les caractères spéciaux
+            int longueur = mot.replaceAll("[^a-zA-Z]", "").length();
+            resultat.append(longueur).append(" ");
+        }
+
+        this.reponse = this.reponse + resultat.toString().trim() + "||";
+
+
         // La conversation contient l'historique des questions-réponses depuis le début.
         afficherConversation();
         return null;
